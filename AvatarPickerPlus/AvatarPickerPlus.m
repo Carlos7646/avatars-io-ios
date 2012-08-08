@@ -2070,7 +2070,7 @@
         while (!data || [data objectForKey:@"error"]) {
             data = [self getTokenForParams:params];
         }
-        [self setAssetURL:[data objectForKey:@"url"]];
+        [self setAssetURL:[NSString stringWithFormat:@"%@?app_id=%@",[data objectForKey:@"url"],kOAuthAppID]];
         if(![data objectForKey:@"upload_info"]){
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 [delegate APPUploaderImageAlreadyUploaded:self];
